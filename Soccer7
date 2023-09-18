@@ -1,5 +1,5 @@
                      
-local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Rayfield/main/source"))()
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
 
 local Window = Rayfield:CreateWindow({
@@ -56,39 +56,25 @@ end
 	    end})
 
 
-	 Tab2:CreateToggle({
-	Name = "Ball Reach",
-	CurrentValue = false,
-	Callback = function(Value)
-	     a = Value
-        while a do task.wait(.5)
-        pcall(function()
-       for i,v in pairs(game.Workspace:GetDescendants()) do
+ 
+	 Tab2:CreateButton({
+	Name = "Ball Reach (C Open C Off)",
+	Callback = function()
+local Toggle = true
+game:GetService"UserInputService".InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.C then Toggle = not Toggle end
+end)
+while task.wait(.5) do
+    if Toggle then
+ for i,v in pairs(game.Workspace:GetDescendants()) do
      if v.Name == "Gameball" then
   v.Size = Vector3.new(40,40,40)
      end
      end
-        end)
-        end
-	    end})
+    end
+end
+end})
  
- 
-	 Tab2:CreateToggle({
-	Name = "Remove Ball Reach",
-	CurrentValue = false,
-	Callback = function(Value)
-	     a = Value
-        while a do task.wait(.5)
-        pcall(function()
-       for i,v in pairs(game.Workspace:GetDescendants()) do
-     if v.Name == "Gameball" then
-  v.Size = Vector3.new(2,2,2)
-     end
-     end
-        end)
-        end
-	    end})
-
 	 Tab2:CreateToggle({
 	Name = "Auto Spam Spin",
 	CurrentValue = false,
